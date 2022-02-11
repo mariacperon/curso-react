@@ -4,26 +4,36 @@ class Membro extends Component{
     constructor(props){
         super(props)
         this.state = {
-            nome: props.nome
+            status: false
         }
-        this.entrar = this.entrar.bind(this)
         this.sair = this.sair.bind(this)
-    }
-
-    entrar(){
-        this.setState({nome: 'Maria'})
+        this.entrar = this.entrar.bind(this)
     }
 
     sair(){
-        this.setState({nome: 'visitante'})
+        this.setState({status: false})
+    }
+
+    entrar(){
+        this.setState({status: true})
     }
 
     render(){
         return(
             <div>
-                <h2>Bem-vinda(o), {this.state.nome}!</h2>
-                <button onClick={this.entrar}>Entrar como Maria</button>
-                <button onClick={this.sair}>Sair</button>
+                {this.state.status ? 
+                    <div>
+                        <h1>Bem-vindo ao sistema!</h1>
+                        <button onClick={this.sair}>Sair do sistema</button>
+                    </div> : 
+                    <div>
+                        <h1>Olá, visitante. Faça o login!</h1>
+                        <button onClick={this.entrar}>Entrar do sistema</button>
+                    </div>
+                }
+                <div>
+                    <h2>Curso react js</h2>
+                </div>
             </div>
         )
     }
