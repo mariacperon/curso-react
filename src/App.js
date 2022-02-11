@@ -1,34 +1,40 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React, {Component} from 'react'
 
-const Equipe = (props) => {
-    return (
-        <div>
-            <Sobre nome={props.nome} cargo={props.cargo} idade={props.idade}/>
-            <Social fb={props.fb}/>
-            <hr/>
-        </div> 
-    )
+class Equipe extends Component{
+    render(){
+        return (
+            <div>
+                <Sobre nome={this.props.nome} cargo={this.props.cargo} idade={this.props.idade}/>
+                <Social fb={this.props.fb}/>
+                <hr/>
+            </div> 
+        )
+    }
 }
 
-const Sobre = (props) => {
-    return (
-        <div>
-            <h2>Olá, sou a(o) {props.nome}</h2>
-            <h3>Cargo: {props.cargo}</h3>
-            <h3>Idade: {props.idade} anos</h3>
-        </div> 
+class Sobre extends Component{
+    render(){
+        return (
+            <div>
+                <h2>Olá, sou a(o) {this.props.nome}</h2>
+                <h3>Cargo: {this.props.cargo}</h3>
+                <h3>Idade: {this.props.idade} anos</h3>
+            </div> 
     )
+    }
 }
 
-const Social = (props) => {
-    return (
-        <div>
-            <a href={props.fb}>Facebook </a>
-            <a>Linkedin </a>
-            <a>Youtube</a>
-        </div> 
+class Social extends Component {
+    render(){
+        return (
+            <div>
+                <a href={this.props.fb}>Facebook </a>
+                <a>Linkedin </a>
+                <a>Youtube</a>
+            </div> 
     )
+    }
 }
 
 
@@ -37,7 +43,7 @@ function App(){
         <div> 
             <h1>Conheça nossa equipe: </h1>
             <Equipe nome="Lucas" cargo="programador" idade="29" fb="https://google.com"/>
-            <Equipe nome="Maria" cargo="designer" idade="18"/>
+            <Equipe nome="Maria" cargo="designer" idade="18" fb="https://google.com"/>
         </div>
     )
 }
