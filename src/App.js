@@ -4,22 +4,21 @@ class App extends Component{
 
     constructor(props){
         super(props)
-        this.state ={
-            nome: 'Mateus',
-            contador : 0
+        this.state = {
+            hora : '00:00:00'
         }
-        this.aumentar = this.aumentar.bind(this)
-        this.diminur = this.diminur.bind(this)
+    }
+    
+    componentDidMount(){
+        setInterval(()=>{
+            this.setState({hora: new Date().toLocaleTimeString()})
+        }, 1000)
     }
 
     render(){
         return (
             <div> 
-                <h2>Contador:</h2>
-                <h3>
-                    <button onClick={this.diminur}>-</button>
-                        {this.state.contador}   
-                    <button onClick={this.aumentar}>+</button></h3>
+                <h1> Meu projeto {this.state.hora}</h1>
             </div>
         )
     }
