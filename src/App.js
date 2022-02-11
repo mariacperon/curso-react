@@ -1,51 +1,45 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react'
 
-class Equipe extends Component{
+class App extends Component{
+
+    constructor(props){
+        super(props)
+        this.state ={
+            nome: 'Mateus',
+            contador : 0
+        }
+        this.aumentar = this.aumentar.bind(this)
+        this.diminur = this.diminur.bind(this)
+    }
+
+    aumentar(){
+        let state = this.state
+        state.contador += 1
+        this.setState(state)
+    }
+
+    diminur(){
+        let state = this.state
+        if(state.contador === 0){
+            alert('Não é permitido ter contadores negativos.')
+            return
+        }
+        state.contador -= 1
+        this.setState(state)
+    }
+
     render(){
         return (
-            <div>
-                <Sobre nome={this.props.nome} cargo={this.props.cargo} idade={this.props.idade}/>
-                <Social fb={this.props.fb}/>
-                <hr/>
-            </div> 
+            <div> 
+                <h2>Contador:</h2>
+                <h3>
+                    <button onClick={this.diminur}>-</button>
+                        {this.state.contador}   
+                    <button onClick={this.aumentar}>+</button></h3>
+            </div>
         )
     }
-}
-
-class Sobre extends Component{
-    render(){
-        return (
-            <div>
-                <h2>Olá, sou a(o) {this.props.nome}</h2>
-                <h3>Cargo: {this.props.cargo}</h3>
-                <h3>Idade: {this.props.idade} anos</h3>
-            </div> 
-    )
-    }
-}
-
-class Social extends Component {
-    render(){
-        return (
-            <div>
-                <a href={this.props.fb}>Facebook </a>
-                <a>Linkedin </a>
-                <a>Youtube</a>
-            </div> 
-    )
-    }
-}
-
-
-function App(){
-    return (
-        <div> 
-            <h1>Conheça nossa equipe: </h1>
-            <Equipe nome="Lucas" cargo="programador" idade="29" fb="https://google.com"/>
-            <Equipe nome="Maria" cargo="designer" idade="18" fb="https://google.com"/>
-        </div>
-    )
 }
 
 export default App
