@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 
 function App(){
 
@@ -22,6 +22,8 @@ function App(){
         setInput('')
     }
 
+    const totalTarefas =useMemo(() => tarefas.length, [tarefas])
+
     return (
         <div> 
             <button type='button' onClick={handleAdd}>Adicionar</button>
@@ -31,6 +33,8 @@ function App(){
                     <li ke>{tarefa}</li>
                 ))}
             </ul>
+            <br/>
+            <strong>Você tem {totalTarefas} tarefas.</strong>
         </div>
     )
 }
