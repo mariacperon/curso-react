@@ -1,32 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
-import React, {useState} from 'react'
-
-function App(){
-
-    const [tarefas, setTarefas] = useState([
-        'Pagar a conta de luz',
-        'Estudar React Hooks'
-    ])
-
-    const [input, setInput] = useState('')
-
-    function handleAdd(){
-        setTarefas([...tarefas, input])
-        setInput('')
-    }
-
-    return (
-        <div> 
-            <button type='button' onClick={handleAdd}>Adicionar</button>
-            <input type='text' value={input} onChange={(e) => setInput(e.target.value)}></input>
-            <ul>
-                {tarefas.map(tarefa => (
-                    <li ke>{tarefa}</li>
-                ))}
-            </ul>
-        </div>
-    )
+import React, { useState } from 'react';
+ 
+function App() {
+ 
+  const [contador, setContador] = useState(0);
+ 
+  return (
+    <div>
+      <p>Você clicou {contador} vezes</p>
+      <button onClick={() => setContador(contador + 1)}>
+          Aumentar
+      </button>
+    </div>
+  );
 }
 
 export default App
