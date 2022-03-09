@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
-import React, {useEffect, useMemo, useState} from 'react'
+import React, {useCallback, useEffect, useMemo, useState} from 'react'
 
 function App(){
 
@@ -17,10 +17,10 @@ function App(){
 
     useEffect(() => {localStorage.setItem('tarefas', JSON.stringify(tarefas))}, [tarefas])
 
-    function handleAdd(){
+    const handleAdd = useCallback(() => {
         setTarefas([...tarefas, input])
         setInput('')
-    }
+    }, [input, tarefas])
 
     const totalTarefas =useMemo(() => tarefas.length, [tarefas])
 
