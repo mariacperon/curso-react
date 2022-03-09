@@ -1,19 +1,38 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from 'react';
- 
-function App() {
- 
-  const [contador, setContador] = useState(0);
- 
-  return (
-    <div>
-      <p>Você clicou {contador} vezes</p>
-      <button onClick={() => setContador(contador + 1)}>
-          Aumentar
-      </button>
-    </div>
-  );
+import React, {useEffect, useState} from 'react'
+
+function App(){
+
+    const [tarefas, setTarefas] = useState([])
+    const [input, setInput] = useState('')
+
+    useEffect(() => {
+        const tarefasStorage = localStorage.getItem('tarefas')
+
+        if(tarefasStorage){
+            setTarefas(JSON.parse(tarefasStorage))
+        }
+    }, [])
+
+    useEffect(() => {localStorage.setItem('tarefas', JSON.stringify(tarefas))}, [tarefas])
+
+    function handleAdd(){
+        setTarefas([...tarefas, input])
+        setInput('')
+    }
+
+    return (
+        <div> 
+            <button type='button' onClick={handleAdd}>Adicionar</button>
+            <input type='text' value={input} onChange={(e) => setInput(e.target.value)}></input>
+            <ul>
+                {tarefas.map(tarefa => (
+                    <li ke>{tarefa}</li>
+                ))}
+            </ul>
+        </div>
+    )
 }
 
 export default App
