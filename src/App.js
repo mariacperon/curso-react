@@ -2,39 +2,27 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, {useCallback, useEffect, useMemo, useState} from 'react'
 
-function App(){
+//https://sujeitoprogramador.com/rn-api/?api=posts
 
-    const [tarefas, setTarefas] = useState([])
-    const [input, setInput] = useState('')
+function App(){
+    const [nutri, setNutri] = useState([])
 
     useEffect(() => {
-        const tarefasStorage = localStorage.getItem('tarefas')
-
-        if(tarefasStorage){
-            setTarefas(JSON.parse(tarefasStorage))
+        function loadAPI(){
+            let url = 'https://sujeitoprogramador.com/rn-api/?api=posts'
+            fetch(url).then((r) => r.json()).then((json) => {
+                setNutri(json)
+            })
         }
+
+        loadAPI()
     }, [])
 
-    useEffect(() => {localStorage.setItem('tarefas', JSON.stringify(tarefas))}, [tarefas])
-
-    const handleAdd = useCallback(() => {
-        setTarefas([...tarefas, input])
-        setInput('')
-    }, [input, tarefas])
-
-    const totalTarefas =useMemo(() => tarefas.length, [tarefas])
-
     return (
-        <div> 
-            <button type='button' onClick={handleAdd}>Adicionar</button>
-            <input type='text' value={input} onChange={(e) => setInput(e.target.value)}></input>
-            <ul>
-                {tarefas.map(tarefa => (
-                    <li ke>{tarefa}</li>
-                ))}
-            </ul>
-            <br/>
-            <strong>Você tem {totalTarefas} tarefas.</strong>
+        <div className="container"> 
+            <header>
+                <h1>react nutri</h1>
+            </header>
         </div>
     )
 }
